@@ -25,7 +25,6 @@ const Navlinks: React.FC<NavLinksProps> = ({ navItem }) => {
       {navItem.submenu ? (
         <>
           <button type="button" className="relative">{navItem.name}</button>
-          <Submenus submenus={navItem.submenu}/>
         </>
       ) : (
         <li
