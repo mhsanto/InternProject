@@ -3,7 +3,12 @@ import wall2 from "../../../public/wall2.jpg";
 import wall3 from "../../../public/wall3.jpg";
 import wall4 from "../../../public/wall4.jpg";
 import wall5 from "../../../public/wall5.jpg";
-import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
+import {
+  BsArrowRightCircleFill,
+  BsArrowLeftCircleFill,
+  BsFillPlayCircleFill,
+  BsFillPauseFill,
+} from "react-icons/bs";
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -64,13 +69,9 @@ function Slider() {
 
         <button
           onClick={toggleAutoPlay}
-          className="absolute right-16 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 shadow-md"
+          className="absolute right-10 top-16 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 shadow-md"
         >
-          {isAutoPlay ? (
-            <i className="fas fa-pause text-2xl font-bold text-gray-500"></i>
-          ) : (
-            <i className="fas fa-play text-2xl font-bold text-gray-500"></i>
-          )}
+          {isAutoPlay ? <BsFillPauseFill /> : <BsFillPlayCircleFill />}
         </button>
 
         <div
