@@ -1,130 +1,6 @@
 import { useState } from "react";
-import {
-  BiLogoCss3,
-  BiLogoJavascript,
-  BiLogoReact,
-  BiLogoNodejs,
-  BiLogoTailwindCss,
-  BiLogoMongodb,BiLocationPlus
-} from "react-icons/bi";
-import { AiOutlineConsoleSql } from "react-icons/ai";
-import { BsFacebook,BsGithub,BsLinkedin} from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
-import { TbBrandNextjs } from "react-icons/tb";
-import { SiExpress } from "react-icons/si";
-interface NavItem {
-  id: string;
-  name: string;
-  type: string;
-  href: string;
-  submenu?: SubmenuItem[];
-}
-
-interface SubmenuItem {
-  id: string;
-  name: string;
-  icon: React.ReactNode; // Assuming icons are React components
-}
-
-const navItems:NavItem[]= [
-  {
-    id: crypto.randomUUID(),
-    name: "HOME",
-    type: "list",
-    href: "/",
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "SKILLS",
-    type: "list",
-    href: "",
-    submenu: [
-      {
-        id: crypto.randomUUID(),
-        name: "CSS",
-        icon: <BiLogoCss3 size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Javascript",
-        icon: <BiLogoJavascript size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "React",
-        icon: <BiLogoReact size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Next",
-        icon: <TbBrandNextjs size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Node",
-        icon: <BiLogoNodejs size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Mongo",
-        icon: <BiLogoMongodb size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Express",
-        icon: <SiExpress size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Prisma",
-        icon: <AiOutlineConsoleSql size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Tailwind",
-        icon: <BiLogoTailwindCss size={22} />,
-      },
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "LOCATION",
-    type: "list",
-    href: "",
-    submenu: [
-      {
-        id: crypto.randomUUID(),
-        name: "Gacha Road,Borobari,Gazipur-1703",
-        icon: <BiLocationPlus  size={22} />,
-      },
-   
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "SOCIALS",
-    type: "list",
-    href: "/",
-    submenu: [
-      {
-        id: crypto.randomUUID(),
-        name: "Facebook",
-        icon: <BsFacebook size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Github",
-        icon: <BsGithub size={22} />,
-      },
-      {
-        id: crypto.randomUUID(),
-        name: "Linkedin",
-        icon: <BsLinkedin size={22} />,
-      },
-   
-    ],
-  },
-];
+import { navItems } from "./navitems";
 const DropdownMenu = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState({});
@@ -134,10 +10,19 @@ const DropdownMenu = () => {
   };
 
   const toggleSubmenu = (navItemName: string) => {
-    setDropdownOpen((prevDropdownOpen) => ({
-      ...prevDropdownOpen,
-      [navItemName]: !prevDropdownOpen[navItemName],
-    }));
+    setDropdownOpen((prevDropdownOpen) => {
+      const updatedDropdownOpen = {};
+
+      // Close all submenus
+      Object.keys(prevDropdownOpen).forEach((itemName) => {
+        updatedDropdownOpen[itemName] = false;
+      });
+
+      // Toggle the submenu you clicked on
+      updatedDropdownOpen[navItemName] = !prevDropdownOpen[navItemName];
+
+      return updatedDropdownOpen;
+    });
   };
 
   return (
@@ -179,12 +64,12 @@ const DropdownMenu = () => {
                             : "hidden"
                         }`}
                       >
-                        <ul className="space-y-2 w-full lg:w-80 lg:flex lg:flex-wrap grid grid-cols-2 text-center md:grid-cols-3 justify-between items-center ">
+                        <ul className="space-y-2 w-full lg:w-80 lg:flex lg:flex-wrap grid grid-cols-2 text-center md:grid-cols-3 justify-between items-center">
                           {navItem.submenu.map((menu) => (
-                            <li key={menu.name} >
+                            <li key={menu.name}>
                               <a
                                 href={navItem.href}
-                                className="flex items-center gap-2 p-2 font-medium text-gray-600 rounded-md hover:bg-gray-100 hover:text-black"
+                                className="flex items-center  gap-2 p-2 font-medium text-gray-600 rounded-md hover:bg-gray-100 hover:text-black w-max"
                               >
                                 {menu.icon}
                                 {menu.name}
