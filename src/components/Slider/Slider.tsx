@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import wall1 from "../../../public/wall1.jpg";
 import wall2 from "../../../public/wall2.jpg";
 import wall3 from "../../../public/wall3.jpg";
@@ -7,7 +7,7 @@ import wall5 from "../../../public/wall5.jpg";
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const images = [wall3, wall1, wall2, wall4, wall5];
+  const images = useMemo(() => [wall3, wall1, wall2, wall4, wall5], []);
 
   const previous = () => {
     if (currentIndex > 1) {
@@ -22,7 +22,7 @@ function Slider() {
   };
 
   useEffect(() => {
-    let interval;
+    let interval: number;
 
     if (isAutoPlay) {
       interval = setInterval(() => {
@@ -92,7 +92,11 @@ function Slider() {
                 className="absolute top-0 h-full w-full"
                 style={{ left: `${(index / images.length) * 100}%` }}
               >
-                <img src={image} alt="image" className="h-full w-screen aspect-video object-cover" />
+                <img
+                  src={image}
+                  alt="image"
+                  className="h-full w-screen aspect-video object-cover"
+                />
               </div>
             ))}
           </div>
