@@ -8,7 +8,7 @@ import {
   BiLogoMongodb,BiLocationPlus
 } from "react-icons/bi";
 import { AiOutlineConsoleSql } from "react-icons/ai";
-import { BsFacebook,BsGithub,BsLinkedin ,BSLocatio} from "react-icons/bs";
+import { BsFacebook,BsGithub,BsLinkedin} from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiExpress } from "react-icons/si";
