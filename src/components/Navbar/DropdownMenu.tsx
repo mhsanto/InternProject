@@ -179,7 +179,7 @@ const DropdownMenu = () => {
                             : "hidden"
                         }`}
                       >
-                        <ul className="space-y-2 w-full lg:w-80 lg:flex lg:flex-wrap grid grid-cols-2 text-center md:grid-cols-3 justify-between items-center gap-3">
+                        <ul className="space-y-2 w-full lg:w-80 lg:flex lg:flex-wrap grid grid-cols-2 text-center md:grid-cols-3 justify-between items-center ">
                           {navItem.submenu.map((menu) => (
                             <li key={menu.name} >
                               <a
