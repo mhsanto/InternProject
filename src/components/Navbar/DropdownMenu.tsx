@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { BsArrowDownShort } from "react-icons/bs";
 import Submenus from "./Submenus";
+import { BiLogoCss3, BiLogoJavascript } from "react-icons/bi";
+import { AiOutlineConsoleSql, AiOutlineRight } from "react-icons/ai";
+import Navbutton from "./Navbutton";
 const navItems = [
   {
     id: crypto.randomUUID(),
@@ -15,31 +19,38 @@ const navItems = [
     submenu: [
       {
         id: crypto.randomUUID(),
-        name: "HTML",
-      },
-      {
-        id: crypto.randomUUID(),
         name: "CSS",
-        frameworks: {
+        icon: <BiLogoCss3 size={25} />,
+        icon2: <AiOutlineRight />,
+        extras: {
           title: "Frameworks",
-          names: ["Tailwind", "Bootstrap", "Material-UI"],
+          icon: <BsArrowDownShort size={25} />,
+          names: ["Tailwind", "Bootstrap", "Material"],
         },
       },
       {
         id: crypto.randomUUID(),
         name: "Javascript",
-        frameworks: {
+        icon: <BiLogoJavascript size={25} />,
+        icon2: <AiOutlineRight />,
+        extras: {
           title: "Frameworks",
+          icon: <BsArrowDownShort size={25} />,
           names: ["Angular", "Next", "Vue"],
         },
       },
+      {
+        id: crypto.randomUUID(),
+        name: "Backend",
+        icon: <AiOutlineConsoleSql size={25} />,
+        icon2: <AiOutlineRight />,
+        extras: {
+          title: "Frameworks",
+          icon: <BsArrowDownShort size={25} />,
+          names: ["Next", "Node", "Express"],
+        },
+      },
     ],
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "EDUCATION",
-    type: "list",
-    href: "/",
   },
   {
     id: crypto.randomUUID(),
@@ -58,30 +69,21 @@ const DropdownMenu = () => {
   const [show, setShow] = useState(false);
   return (
     <>
-      <nav className="bg-white  dark:border-gray-700 py-4 fixed h-50 w-screen z-50">
+      <nav className="bg-white  dark:border-gray-700 py-4 fixed h-50 w-screen z-50 px-4">
         <header className="max-w-screen-xl flex justify-between items-center mx-auto">
           <h3 className="text-2xl font-medium">SLASHIT</h3>
-
-          <ul className="flex gap-7">
+          {/* <Navbutton /> */}
+          <ul className="flex gap-7 pr-24 hidden md:flex">
             {navItems.map((navItem) => (
               <>
                 {navItem.submenu ? (
                   <div key={navItem.id} className="relative">
                     <li
-                      className="flex items-center font-medium cursor-pointer select-none"
+                      className="flex items-center font-medium cursor-pointer select-none group "
                       onClick={() => setShow(!show)}
                     >
                       {navItem.name}
-                      <span>
-                        <svg
-                          className="fill-current h-4 w-4 transform group-hover:-rotate-180
-                           transition duration-150 ease-in-out"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                      </span>
+                      <BsArrowDownShort className="group-hover:rotate-180 transition duration-200" />
                     </li>
                     {show && (
                       <ul className="absolute  top-10 bg-white flex flex-col gap-2">
@@ -92,7 +94,9 @@ const DropdownMenu = () => {
                     )}
                   </div>
                 ) : (
-                  <li className="font-medium cursor-pointer">{navItem.name}</li>
+                  <li key={navItem.id} className="font-medium cursor-pointer">
+                    {navItem.name}
+                  </li>
                 )}
               </>
             ))}
@@ -183,5 +187,32 @@ min-w-32
     </>
   );
 };
-
+{/* <ul className="flex gap-7 pr-24 hidden md:flex">
+{navItems.map((navItem) => (
+  <>
+    {navItem.submenu ? (
+      <div key={navItem.id} className="relative">
+        <li
+          className="flex items-center font-medium cursor-pointer select-none group "
+          onClick={() => setShow(!show)}
+        >
+          {navItem.name}
+          <BsArrowDownShort className="group-hover:rotate-180 transition duration-200" />
+        </li>
+        {show && (
+          <ul className="absolute  top-10 bg-white flex flex-col gap-2">
+            {navItem.submenu.map((menu) => (
+              <Submenus menu={menu} />
+            ))}
+          </ul>
+        )}
+      </div>
+    ) : (
+      <li key={navItem.id} className="font-medium cursor-pointer">
+        {navItem.name}
+      </li>
+    )}
+  </>
+))}
+</ul> */}
 export default DropdownMenu;
