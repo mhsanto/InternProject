@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
-import wall1 from "../../../public/wall1.jpg";
+import { useState, useEffect, useMemo } from "react";
 import wall2 from "../../../public/wall2.jpg";
 import wall3 from "../../../public/wall3.jpg";
 import wall4 from "../../../public/wall4.jpg";
 import wall5 from "../../../public/wall5.jpg";
+import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const images = useMemo(() => [wall3, wall1, wall2, wall4, wall5], []);
+  const images = useMemo(() => [wall3, wall2, wall4, wall5], []);
 
   const previous = () => {
     if (currentIndex > 1) {
@@ -50,16 +50,16 @@ function Slider() {
 
         <button
           onClick={previous}
-          className="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md"
+          className="absolute left-5 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md"
         >
-          +
+          <BsArrowLeftCircleFill size={40} />
         </button>
 
         <button
           onClick={forward}
-          className="absolute right-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md"
+          className="absolute right-5 top-1/2 z-10 bg-gray-100  flex -translate-y-1/2 items-center justify-center rounded-full  shadow-md"
         >
-          <i className="fas fa-chevron-right text-2xl font-bold text-gray-500"></i>
+          <BsArrowRightCircleFill size={40} />
         </button>
 
         <button
@@ -95,7 +95,7 @@ function Slider() {
                 <img
                   src={image}
                   alt="image"
-                  className="h-full w-screen aspect-video object-cover"
+                  className="h-full w-screen  object-cover"
                 />
               </div>
             ))}
